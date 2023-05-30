@@ -25,7 +25,6 @@ export default {
             }
          )
             .then(response => {
-               console.log(response.data.results.data);
                this.projects = response.data.results.data;
                this.currentPage = response.data.results.current_page;
                this.lastPage = response.data.results.last_page;
@@ -39,8 +38,15 @@ export default {
 </script>
 
 <template>
-   <div class="container">
-      <h1 class="text-center py-3 display-2 fw-bold">Lista dei progetti</h1>
+   <div class="container text-center">
+      <h1 class="py-3 display-2 fw-bold">Lista dei progetti</h1>
+      <nav class="d-flex justify-content-center">
+         <ul class="pagination">
+            <li class="page-item" @click="getProjects(currentPage - 1)" :class="{'disabled' : currentPage == 1}"><a class="page-link">Previous</a></li>
+            <li class="page-item" @click="getProjects(currentPage = page)" v-for="page in lastPage"><a class="page-link">{{ page }}</a></li>
+            <li class="page-item" @click="getProjects(currentPage + 1)" :class="{'disabled' : currentPage == lastPage}"><a class="page-link">Next</a></li>
+         </ul>
+      </nav>
       <div class="row py-5">
          <div class="col-6" v-for="project in projects">
             <AppCard 

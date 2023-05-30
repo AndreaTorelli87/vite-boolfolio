@@ -21,8 +21,8 @@ export default {
    <div class="card">
       <img :src="image" :alt="titolo" class="card-img-top"/>
       <div class="card-body">
-         <h3 class="card-title text-center">{{titolo}}</h3>
-         <p class="card-text">{{descrizione}}</p>
+         <h3 class="card-title">{{titolo}}</h3>
+         <p class="card-text text-start">{{descrizione}}</p>
          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
    </div>
