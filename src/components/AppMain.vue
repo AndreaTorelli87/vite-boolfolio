@@ -1,7 +1,11 @@
 <script>
 import axios from 'axios';
+import AppCard from "./AppCard.vue";
 export default {
    name: "AppMain",
+   components: {
+      AppCard
+   },
    data() {
       return {
          projects: [],
@@ -36,7 +40,16 @@ export default {
 
 <template>
    <div class="container">
-      <h1>Sono AppMain</h1>
+      <h1 class="text-center py-3 display-2 fw-bold">Lista dei progetti</h1>
+      <div class="row py-5">
+         <div class="col-6" v-for="project in projects">
+            <AppCard 
+               :image="project.img"
+               :titolo="project.titolo"
+               :descrizione="project.descrizione"
+            />
+         </div>
+      </div>
    </div>
 </template>
 
