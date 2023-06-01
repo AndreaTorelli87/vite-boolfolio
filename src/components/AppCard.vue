@@ -5,6 +5,7 @@ export default {
       image: String,
       titolo: String,
       descrizione: String,
+      slug: String,
    },
    data() {
       return {
@@ -23,7 +24,9 @@ export default {
       <div class="card-body">
          <h3 class="card-title">{{titolo}}</h3>
          <p class="card-text text-start">{{descrizione}}</p>
-         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+         <router-link :to="{name:'single-project', params: {slug}}" class="btn btn-succes">
+            <i class="fa-solid fa-eye"></i>
+         </router-link>
       </div>
    </div>
 </template>

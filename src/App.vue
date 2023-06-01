@@ -1,12 +1,10 @@
 <script>
 import AppHeader from "./components/AppHeader.vue";
-import AppMain from "./components/AppMain.vue";
 
 export default {
    name: "App.vue",
    components: {
       AppHeader,
-      AppMain,
    },
    data() {
       return {
@@ -17,9 +15,11 @@ export default {
 </script>
 
 <template>
-   <h1 class="container">Sono App.vue</h1>
-   <AppHeader />
-   <AppMain />
+   <div class="container">
+      <AppHeader />
+      <router-view/>
+   </div>
+   
 </template>
 
 <style lang="scss">

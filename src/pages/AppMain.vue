@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import AppCard from "./AppCard.vue";
+import AppCard from "../components/AppCard.vue";
 export default {
    name: "AppMain",
    components: {
@@ -10,7 +10,7 @@ export default {
       return {
          projects: [],
          contentMaxLength: 200,
-         baseUrl: 'http://127.0.0.1:8000',
+         baseUrl: "http://127.0.0.1:8000",
          currentPage: 1,
          lastPage: null
       }
@@ -24,11 +24,11 @@ export default {
                }
             }
          )
-            .then(response => {
-               this.projects = response.data.results.data;
-               this.currentPage = response.data.results.current_page;
-               this.lastPage = response.data.results.last_page;
-            });
+         .then(response => {
+            this.projects = response.data.results.data;
+            this.currentPage = response.data.results.current_page;
+            this.lastPage = response.data.results.last_page;
+         });
       },
    },
    mounted() {
@@ -43,7 +43,7 @@ export default {
       <nav class="d-flex justify-content-center">
          <ul class="pagination">
             <li class="page-item" @click="getProjects(currentPage - 1)" :class="{'disabled' : currentPage == 1}"><a class="page-link">Previous</a></li>
-            <li class="page-item" @click="getProjects(currentPage = page)" v-for="page in lastPage"><a class="page-link">{{ page }}</a></li>
+            <li class="page-item" @click="getProjects(currentPage = page)" :class="{'active' : currentPage == page}" v-for="page in lastPage"><a class="page-link">{{ page }}</a></li>
             <li class="page-item" @click="getProjects(currentPage + 1)" :class="{'disabled' : currentPage == lastPage}"><a class="page-link">Next</a></li>
          </ul>
       </nav>
@@ -53,6 +53,7 @@ export default {
                :image="project.img"
                :titolo="project.titolo"
                :descrizione="project.descrizione"
+               :slug="project.slug"
             />
          </div>
       </div>
@@ -61,4 +62,8 @@ export default {
 
 <style lang="scss" scoped>
 @use "../styles/general.scss";
+
+li a {
+   cursor: pointer;
+}
 </style>
